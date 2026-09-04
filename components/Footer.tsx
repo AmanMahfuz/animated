@@ -1,119 +1,129 @@
 "use client";
 
-import React from "react";
-import { ArrowUpRight, ShieldCheck, Download, Mail, Phone, MapPin } from "lucide-react";
+import React, { useState } from "react";
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterJoined, setNewsletterJoined] = useState(false);
+
+  const handleNewsletter = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterEmail) {
+      setNewsletterJoined(true);
+      setTimeout(() => setNewsletterJoined(false), 5000);
+      setNewsletterEmail("");
+    }
   };
 
   return (
-    <footer className="relative bg-[#040507] border-t border-white/10 pt-20 pb-12 px-4 sm:px-8 text-zinc-400 font-normal">
-      <div className="max-w-7xl mx-auto">
+    <footer className="w-full bg-[#f5f3f0] border-t border-[#d4c4b7]/40 pt-16 md:pt-24 pb-12 text-[#50453b]">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
         
-        {/* Top CTA Banner */}
-        <div className="glass-panel p-8 sm:p-14 rounded-3xl border border-white/10 mb-20 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="max-w-xl text-center lg:text-left">
-            <span className="text-[11px] font-mono text-amber-400 uppercase tracking-widest mb-2 block">
-              ARCHITECTURAL PARTNERSHIP
-            </span>
-            <h3 className="text-2xl sm:text-4xl font-light text-white mb-3">
-              Integrate Aura into your next commission.
-            </h3>
-            <p className="text-sm text-zinc-400">
-              Direct access to our Swiss engineering team, dedicated CAD drafting desk, and tailored physical textile sample library.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a
-              href="#space-estimator"
-              className="px-6 py-3.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-black font-mono text-xs font-bold uppercase tracking-wider text-center hover:opacity-95 transition-opacity"
-            >
-              Configure Schedule
-            </a>
-            <button
-              onClick={scrollToTop}
-              className="px-6 py-3.5 rounded-full glass-panel border border-white/10 text-white font-mono text-xs uppercase tracking-wider hover:bg-white/10 transition-colors"
-            >
-              Back To Top
-            </button>
-          </div>
-        </div>
-
-        {/* 4 Columns Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-white/10 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
           
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-7 h-7 rounded-lg glass-panel border border-amber-400/40 flex items-center justify-center">
-                <span className="text-amber-400 font-serif font-bold text-xs">A</span>
-              </div>
-              <span className="text-sm font-semibold tracking-[0.25em] text-white uppercase">
-                A U R A
+          {/* Company Info & Contact (Col 4) */}
+          <div className="lg:col-span-4 flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <span className="font-serif text-2xl tracking-tight text-[#1b1c1a] font-medium">
+                Brisbane Window Furnishings
               </span>
             </div>
-            <p className="text-zinc-400 leading-relaxed max-w-sm mb-6">
-              Precision automated architectural drapery and circadian living systems for high-altitude villas and luxury residences worldwide.
+            
+            <p className="text-xs sm:text-sm text-[#50453b] max-w-sm font-light leading-relaxed">
+              Custom blinds, plantation shutters, curtains, and outdoor shades for homes, renovations, and commercial spaces across Brisbane, Moreton Bay, and the Sunshine Coast.
             </p>
-            <div className="flex items-center gap-2 text-[11px] font-mono text-zinc-400">
-              <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span>10-Year Comprehensive Motor Warranty</span>
+
+            <div className="pt-2 flex flex-col gap-2 font-mono text-xs">
+              <a href="tel:1300737279" className="text-[#1b1c1a] font-bold hover:text-[#7c572d] flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-[#7c572d]" />
+                <span>1300 73 72 79 / 0448 169 967</span>
+              </a>
+              <a href="mailto:admin@brisbanewindowfurnishings.com.au" className="text-[#1b1c1a] hover:text-[#7c572d] flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-[#7c572d]" />
+                <span>admin@brisbanewindowfurnishings.com.au</span>
+              </a>
+              <div className="text-[#50453b] flex items-start gap-2 pt-1">
+                <MapPin className="w-3.5 h-3.5 text-[#7c572d] shrink-0 mt-0.5" />
+                <span>8/51 Cook Court, North Lakes, Brisbane, QLD 4509</span>
+              </div>
             </div>
           </div>
 
-          <div>
-            <h4 className="font-mono text-white text-xs uppercase tracking-wider mb-4">
-              Engineering
-            </h4>
-            <ul className="space-y-2.5">
-              <li><a href="#architectural-specs" className="hover:text-amber-400 transition-colors">MagLev Track Profile</a></li>
-              <li><a href="#architectural-specs" className="hover:text-amber-400 transition-colors">Circadian Solar Sync</a></li>
-              <li><a href="#architectural-specs" className="hover:text-amber-400 transition-colors">Acoustic Decibel Data</a></li>
-              <li><a href="#architectural-specs" className="hover:text-amber-400 transition-colors">Matter & KNX Bus</a></li>
-              <li><a href="#architectural-specs" className="hover:text-amber-400 transition-colors">Recessed Pockets</a></li>
-            </ul>
+          {/* Product Range (Col 3) */}
+          <div className="lg:col-span-3 flex flex-col gap-3">
+            <p className="font-mono text-[10px] text-[#827569] uppercase tracking-widest font-bold mb-1">
+              Our Products
+            </p>
+            
+            <nav className="flex flex-col gap-2 text-xs font-light">
+              <a href="#products" className="hover:text-[#1b1c1a] transition-colors">Roller, Venetian &amp; Vertical Blinds</a>
+              <a href="#products" className="hover:text-[#1b1c1a] transition-colors">S-Fold, Sheer &amp; Blockout Curtains</a>
+              <a href="#products" className="hover:text-[#1b1c1a] transition-colors">PVC &amp; Basswood Timber Shutters</a>
+              <a href="#products" className="hover:text-[#1b1c1a] transition-colors">Outdoor Awnings &amp; Zipscreen</a>
+              <a href="#motorisation" className="hover:text-[#1b1c1a] transition-colors">Smart Shade Motorisation &amp; Automation</a>
+              <a href="#products" className="hover:text-[#1b1c1a] transition-colors">Security Screens &amp; Fly Doors</a>
+            </nav>
           </div>
 
-          <div>
-            <h4 className="font-mono text-white text-xs uppercase tracking-wider mb-4">
-              Textiles
-            </h4>
-            <ul className="space-y-2.5">
-              <li><a href="#fabric-customizer" className="hover:text-amber-400 transition-colors">St. Moritz Cashmere</a></li>
-              <li><a href="#fabric-customizer" className="hover:text-amber-400 transition-colors">Belgian Raw Linen</a></li>
-              <li><a href="#fabric-customizer" className="hover:text-amber-400 transition-colors">Slate Monolith Weave</a></li>
-              <li><a href="#fabric-customizer" className="hover:text-amber-400 transition-colors">Engadin Alpine Bouclé</a></li>
-              <li><a href="#fabric-customizer" className="hover:text-amber-400 transition-colors">Sample Binder Box</a></li>
-            </ul>
+          {/* Quick Links (Col 2) */}
+          <div className="lg:col-span-2 flex flex-col gap-3">
+            <p className="font-mono text-[10px] text-[#827569] uppercase tracking-widest font-bold mb-1">
+              Company
+            </p>
+            <nav className="flex flex-col gap-2 text-xs font-light">
+              <a href="#about-us" className="hover:text-[#1b1c1a] transition-colors">About Us</a>
+              <a href="#projects" className="hover:text-[#1b1c1a] transition-colors">Portfolio</a>
+              <a href="#testimonials" className="hover:text-[#1b1c1a] transition-colors">Testimonials</a>
+              <a href="#process" className="hover:text-[#1b1c1a] transition-colors">Our Process</a>
+              <a href="#faq" className="hover:text-[#1b1c1a] transition-colors">FAQ</a>
+              <a href="#consultation-booking" className="hover:text-[#1b1c1a] transition-colors">Contact Us</a>
+            </nav>
           </div>
 
-          <div>
-            <h4 className="font-mono text-white text-xs uppercase tracking-wider mb-4">
-              Ateliers
-            </h4>
-            <ul className="space-y-2.5 font-mono text-[11px]">
-              <li className="text-zinc-300">Zurich • Bahnhofstrasse 42</li>
-              <li className="text-zinc-300">Milan • Via Montenapoleone 18</li>
-              <li className="text-zinc-300">London • Mayfair Square 9</li>
-              <li className="text-zinc-300">New York • Madison Ave 650</li>
-            </ul>
+          {/* Free Measure & Newsletter (Col 3) */}
+          <div className="lg:col-span-3 flex flex-col gap-3">
+            <p className="font-mono text-[10px] text-[#827569] uppercase tracking-widest font-bold mb-1">
+              Free Mobile Showroom
+            </p>
+            <p className="text-xs text-[#50453b] font-light">
+              We bring our curated fabric and shutter samples directly to your doorstep across Brisbane &amp; Sunshine Coast.
+            </p>
+
+            <form onSubmit={handleNewsletter} className="flex flex-col gap-2 pt-2">
+              <div className="flex items-center border-b border-[#827569] hover:border-[#7c572d] transition-colors py-1.5">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  className="w-full bg-transparent text-xs text-[#1b1c1a] focus:outline-none placeholder:text-[#827569]"
+                />
+                <button
+                  type="submit"
+                  className="font-mono text-[11px] uppercase text-[#7c572d] hover:text-[#1b1c1a] transition-colors shrink-0 pl-2 font-bold cursor-pointer"
+                >
+                  Subscribe
+                </button>
+              </div>
+              {newsletterJoined ? (
+                <span className="text-[11px] text-[#0d6c43] font-medium">Thank you for subscribing.</span>
+              ) : (
+                <span className="text-[10px] text-[#827569] font-mono">Discretion guaranteed. No spam.</span>
+              )}
+            </form>
           </div>
 
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-zinc-500">
-          <div>
-            © {new Date().getFullYear()} AURA Architectural Systems AG. All rights reserved.
-          </div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-zinc-300">Privacy Policy</a>
-            <a href="#" className="hover:text-zinc-300">Architect Portal</a>
-            <a href="#" className="hover:text-zinc-300">BIM / Revit Models</a>
+        <div className="pt-8 border-t border-[#d4c4b7]/40 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#50453b]">
+          <p>© 2025 Brisbane Window Furnishings. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-[#1b1c1a] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#1b1c1a] transition-colors">Terms &amp; Conditions</a>
+            <a href="#" className="hover:text-[#1b1c1a] transition-colors">10-Year Warranty</a>
           </div>
         </div>
 

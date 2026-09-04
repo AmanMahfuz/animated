@@ -1,55 +1,60 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
-import { Navbar } from "@/components/Navbar";
-import { HeroCanvas } from "@/components/HeroCanvas";
-import { HeroOverlayHUD } from "@/components/HeroOverlayHUD";
-import { EngineeringSpecs } from "@/components/EngineeringSpecs";
-import { FabricCustomizer } from "@/components/FabricCustomizer";
-import { SpaceEstimator } from "@/components/SpaceEstimator";
-import { InstallationsGallery } from "@/components/InstallationsGallery";
+import React from "react";
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { AboutUsSection } from "@/components/AboutUsSection";
+import { ProductTransformShowcase } from "@/components/ProductTransformShowcase";
+import { ProjectsGallery } from "@/components/ProjectsGallery";
+import { MotorisationSmartHub } from "@/components/MotorisationSmartHub";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { FAQSection } from "@/components/FAQSection";
+import { BookingCTA } from "@/components/BookingCTA";
 import { Footer } from "@/components/Footer";
-import { ConsultationModal } from "@/components/ConsultationModal";
 
 export default function Home() {
-  const [activeChapterIndex, setActiveChapterIndex] = useState(0);
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-
-  const handleChapterChange = useCallback((chapterIdx: number) => {
-    setActiveChapterIndex(chapterIdx);
-  }, []);
+  const scrollToBooking = () => {
+    const elem = document.getElementById("consultation-booking");
+    if (elem) {
+      elem.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <main className="min-h-screen bg-[#060709] text-[#f4f4f5] selection:bg-amber-400 selection:text-black">
-      {/* Top Navbar */}
-      <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
+    <main className="min-h-screen bg-[#fbf9f6] text-[#1b1c1a] antialiased selection:bg-[#d4a574] selection:text-[#2c1700]">
+      {/* 56px Sticky Navigation */}
+      <Header onOpenBooking={scrollToBooking} />
 
-      {/* Hero Canvas Section with Sticky Viewport & 168 Frame Smooth Scroll Engine */}
-      <div className="relative">
-        <HeroCanvas onChapterChange={handleChapterChange} />
-        <HeroOverlayHUD activeChapterIndex={activeChapterIndex} />
-      </div>
+      {/* 1. Hero Section: "YOUR WINDOWS. YOUR LIGHT. YOUR SPACE." */}
+      <HeroSection onOpenBooking={scrollToBooking} />
 
-      {/* Swiss Architectural Engineering Deep-Dive */}
-      <EngineeringSpecs />
+      {/* 2. About Us: "REFRESH YOUR SPACE WITH BESPOKE WINDOW SOLUTIONS" */}
+      <AboutUsSection onOpenBooking={scrollToBooking} />
 
-      {/* Material & Acoustic Textile Atelier */}
-      <FabricCustomizer />
+      {/* 3. Products: "FABRIC → WINDOW → ROOM" & Curated Systems */}
+      <ProductTransformShowcase onOpenBooking={scrollToBooking} />
 
-      {/* Live Room Dimension & Metric Estimator */}
-      <SpaceEstimator />
+      {/* 4. Portfolio: "WINDOWS AS FRAMES" — Recent Projects Across Brisbane */}
+      <ProjectsGallery onOpenBooking={scrollToBooking} />
 
-      {/* Global Architectural Portfolio */}
-      <InstallationsGallery />
+      {/* 5. Motorisation: "ONE TAP CHANGES THE ROOM" */}
+      <MotorisationSmartHub onOpenBooking={scrollToBooking} />
 
-      {/* Luxury Footer */}
+      {/* 6. Process: "YOUR JOURNEY WITH US" */}
+      <ProcessTimeline onOpenBooking={scrollToBooking} />
+
+      {/* 7. Testimonials: "HEAR WHAT OUR CUSTOMERS SAY" (5-Star Google Reviews) */}
+      <TestimonialsSection />
+
+      {/* 8. FAQ: "FREQUENTLY ASKED QUESTIONS" */}
+      <FAQSection onOpenBooking={scrollToBooking} />
+
+      {/* 9. Consultation Booking: "BOOK YOUR FREE MEASURE & QUOTE TODAY" */}
+      <BookingCTA />
+
+      {/* 10. Footer */}
       <Footer />
-
-      {/* Consultation Booking Modal */}
-      <ConsultationModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-      />
     </main>
   );
 }

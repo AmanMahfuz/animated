@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #060709;
-  --foreground: #f4f4f5;
-  --gold: #d4af37;
-  --gold-light: #f3e5ab;
-  --surface-glass: rgba(18, 20, 26, 0.7);
-  --border-glass: rgba(255, 255, 255, 0.08);
+  --background: #fbf9f6;
+  --foreground: #1b1c1a;
+  --surface: #fbf9f6;
+  --surface-dim: #dbdad7;
+  --surface-bright: #fbf9f6;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f5f3f0;
+  --surface-container: #efeeeb;
+  --surface-container-high: #eae8e5;
+  --surface-container-highest: #e4e2df;
+  --on-surface: #1b1c1a;
+  --on-surface-variant: #50453b;
+  --outline: #827569;
+  --outline-variant: #d4c4b7;
+  --primary: #7c572d;
+  --primary-container: #d4a574;
+  --on-primary: #ffffff;
+  --on-primary-fixed: #2c1700;
+  --tertiary: #0d6c43;
 }
 
 @theme inline {
@@ -20,68 +33,87 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #060709;
-  color: #f4f4f5;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  background-color: #fbf9f6;
+  color: #1b1c1a;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: #060709;
-  color: #f4f4f5;
+  background-color: #fbf9f6;
+  color: #1b1c1a;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
 
-/* Custom glassmorphism utilities */
-.glass-panel {
-  background: rgba(13, 15, 20, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.font-serif, .font-display {
+  font-family: var(--font-noto-serif), Georgia, serif;
 }
 
-.glass-panel-light {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.font-mono, .label-caps {
+  font-family: var(--font-inter), sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.gold-gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #d8c29d 50%, #9e7d47 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Custom Light Luxury Slider Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e4e2df;
+  border-radius: 9999px;
+  height: 6px;
+  outline: none;
+  cursor: pointer;
 }
 
-.silver-gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7c572d;
+  box-shadow: 0 2px 8px rgba(124, 87, 45, 0.4), 0 0 0 2px #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-/* Custom subtle scrollbar */
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #d4a574;
+}
+
+/* Material Symbols icon helper */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090a0f;
+  background: #f5f3f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: #d4c4b7;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.4);
-}
-
-@keyframes pulseSlow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-.animate-pulse-slow {
-  animation: pulseSlow 4s ease-in-out infinite;
+  background: #7c572d;
 }
