@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fbf9f6] text-[#1b1c1a] antialiased selection:bg-[#d4a574] selection:text-[#2c1700]">
+    <main className="min-h-screen bg-[#f8fafc] text-[#0f172a] antialiased selection:bg-[#80a8d8]/30 selection:text-[#0f2744]">
       {/* 56px Sticky Navigation */}
       <Header onOpenBooking={scrollToBooking} />
 

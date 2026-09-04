@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 
 interface ProjectsGalleryProps {
   onOpenBooking?: () => void;
@@ -67,28 +68,79 @@ const PROJECTS_DATA: ProjectItem[] = [
 
 export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const galleryGridRef = useRef<HTMLDivElement>(null);
+  const isInitialMount = useRef(true);
 
   const filteredProjects = activeCategory === "all"
     ? PROJECTS_DATA
     : PROJECTS_DATA.filter((p) => p.category === activeCategory);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && galleryGridRef.current) {
+            const cards = galleryGridRef.current.children;
+            if (cards.length > 0) {
+              animate(Array.from(cards), {
+                opacity: [0, 1],
+                translateY: [24, 0],
+                delay: stagger(80),
+                duration: 650,
+                ease: "outCubic",
+              });
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (galleryGridRef.current) {
+      observer.observe(galleryGridRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    if (galleryGridRef.current) {
+      const cards = galleryGridRef.current.children;
+      if (cards.length > 0) {
+        animate(Array.from(cards), {
+          opacity: [0.2, 1],
+          scale: [0.97, 1],
+          translateY: [12, 0],
+          delay: stagger(60),
+          duration: 500,
+          ease: "outCubic",
+        });
+      }
+    }
+  }, [activeCategory]);
+
   return (
-    <section className="w-full py-16 md:py-24 bg-[#fbf9f6]" id="projects">
+    <section className="w-full py-16 md:py-24 bg-[#f8fafc]" id="projects">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-6 h-px bg-[#7c572d]" />
-              <span className="font-mono text-[10px] text-[#7c572d] uppercase tracking-widest font-semibold">
+              <span className="w-6 h-px bg-[#3b71ad]" />
+              <span className="font-mono text-[10px] text-[#3b71ad] uppercase tracking-widest font-semibold">
                 Recent Projects Across Brisbane
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1b1c1a] font-light tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#0f172a] font-light tracking-tight">
               WINDOWS AS FRAMES
             </h2>
-            <p className="text-sm sm:text-base text-[#50453b] mt-2 font-light max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base text-[#475569] mt-2 font-light max-w-xl leading-relaxed">
               We've completed stunning window furnishings installations across homes, renovations, and luxury residences in Brisbane &amp; the Sunshine Coast.
             </p>
           </div>
@@ -107,8 +159,8 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 rounded-full font-mono text-[11px] uppercase font-semibold transition-all duration-200 cursor-pointer ${
                   activeCategory === cat.id
-                    ? "bg-[#7c572d] text-white shadow-sm"
-                    : "bg-[#efeeeb] hover:bg-[#eae8e5] text-[#1b1c1a]"
+                    ? "bg-[#3b71ad] text-white shadow-xs shadow-[#3b71ad]/30"
+                    : "bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#0f172a] border border-[#e2e8f0]"
                 }`}
               >
                 {cat.name}
@@ -118,14 +170,14 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
         </div>
 
         {/* Asymmetric Bento Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
+        <div ref={galleryGridRef} className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
           {filteredProjects.map((proj) => {
             const isCol7 = proj.colSpan === "col7";
             return (
               <div
                 key={proj.id}
                 onClick={onOpenBooking}
-                className={`group relative rounded-2xl overflow-hidden shadow-md bg-[#eae8e5] cursor-pointer ${
+                className={`group relative rounded-2xl overflow-hidden shadow-md bg-[#e2e8f0] cursor-pointer ${
                   isCol7 ? "md:col-span-7" : "md:col-span-5"
                 }`}
               >
@@ -138,17 +190,17 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
                 </div>
 
                 {/* Reveal Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent p-6 sm:p-8 flex flex-col justify-end text-white transition-opacity duration-300">
-                  <span className="font-mono text-[10px] text-[#ffdcbc] uppercase tracking-widest font-semibold">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/40 to-transparent p-6 sm:p-8 flex flex-col justify-end text-white transition-opacity duration-300">
+                  <span className="font-mono text-[10px] text-[#cbe0f8] uppercase tracking-widest font-semibold">
                     {proj.commission}
                   </span>
                   <h3 className="font-serif text-2xl sm:text-3xl text-white mt-1 font-light">
                     {proj.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-300 max-w-lg mt-2 font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-lg mt-2 font-light leading-relaxed">
                     {proj.desc}
                   </p>
-                  <div className="pt-4 flex flex-wrap items-center gap-3 text-[10px] font-mono text-[#d4c4b7] border-t border-white/15 mt-3">
+                  <div className="pt-4 flex flex-wrap items-center gap-3 text-[10px] font-mono text-[#80a8d8] border-t border-white/15 mt-3">
                     {proj.specs}
                   </div>
                 </div>

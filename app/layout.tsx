@@ -46,7 +46,7 @@ export default function RootLayout({
       {
         "@type": "LocalBusiness",
         "name": "Brisbane Window Furnishings",
-        "image": "/frames/ezgif-frame-001.jpg",
+        "image": "/roller_blinds_frames/frame_001.webp",
         "description": "Custom blinds, shutters, curtains and outdoor shades for homes across Brisbane and the Sunshine Coast.",
         "telephone": "1300 73 72 79",
         "address": {
@@ -76,7 +76,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#fbf9f6] text-[#1b1c1a] font-sans antialiased selection:bg-[#d4a574] selection:text-[#2c1700]">
+      <body className="min-h-full flex flex-col bg-[#f8fafc] text-[#0f172a] font-sans antialiased selection:bg-[#80a8d8]/30 selection:text-[#0f2744]">
         {children}
       </body>
     </html>

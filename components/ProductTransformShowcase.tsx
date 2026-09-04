@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 
 interface ProductTransformShowcaseProps {
   onOpenBooking?: () => void;
@@ -85,53 +86,98 @@ const CURATED_PRODUCTS = [
 ];
 
 export function ProductTransformShowcase({ onOpenBooking }: ProductTransformShowcaseProps) {
+  const progressionRef = useRef<HTMLDivElement>(null);
+  const productsGridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === progressionRef.current) {
+              const cards = progressionRef.current?.children;
+              if (cards) {
+                animate(Array.from(cards), {
+                  opacity: [0, 1],
+                  translateY: [24, 0],
+                  delay: stagger(100),
+                  duration: 700,
+                  ease: "outCubic",
+                });
+              }
+            }
+
+            if (entry.target === productsGridRef.current) {
+              const items = productsGridRef.current?.children;
+              if (items) {
+                animate(Array.from(items), {
+                  opacity: [0, 1],
+                  translateY: [20, 0],
+                  delay: stagger(70),
+                  duration: 650,
+                  ease: "outCubic",
+                });
+              }
+            }
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    if (progressionRef.current) observer.observe(progressionRef.current);
+    if (productsGridRef.current) observer.observe(productsGridRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="w-full py-16 md:py-24 bg-[#f5f3f0]" id="products">
+    <section className="w-full py-16 md:py-24 bg-[#f1f5f9]" id="products">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
         
         {/* Progression Header */}
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-3">
-            <span className="w-6 h-px bg-[#7c572d]" />
-            <span className="font-mono text-[10px] text-[#7c572d] uppercase tracking-widest font-semibold">
+            <span className="w-6 h-px bg-[#3b71ad]" />
+            <span className="font-mono text-[10px] text-[#3b71ad] uppercase tracking-widest font-semibold">
               Artisanal Continuum
             </span>
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1b1c1a] font-light tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#0f172a] font-light tracking-tight">
               FABRIC → WINDOW → ROOM
             </h2>
-            <p className="text-sm sm:text-base text-[#50453b] max-w-md font-light leading-relaxed">
+            <p className="text-sm sm:text-base text-[#475569] max-w-md font-light leading-relaxed">
               From the raw tactile weave of pure Flanders flax to the micrometer-calibrated motorized track and the finished sensory sanctuary.
             </p>
           </div>
         </div>
 
         {/* 3-Stage Visual Progression Triptych */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
+        <div ref={progressionRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
           {PROGRESSION_STEPS.map((step, idx) => (
             <div
               key={idx}
-              className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-[#e4e2df]"
+              className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-shadow border border-[#e2e8f0]"
             >
-              <div className="relative aspect-square overflow-hidden bg-[#eae8e5]">
+              <div className="relative aspect-square overflow-hidden bg-[#e2e8f0]">
                 <img
                   src={step.image}
                   alt={step.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md font-mono text-[10px] uppercase tracking-widest text-[#1b1c1a] font-semibold shadow-sm">
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md font-mono text-[10px] uppercase tracking-widest text-[#0f172a] font-semibold shadow-xs">
                   {step.step}
                 </div>
               </div>
               <div className="p-6 flex flex-col gap-2">
-                <h4 className="font-serif text-lg text-[#1b1c1a] font-medium">
+                <h4 className="font-serif text-lg text-[#0f172a] font-medium">
                   {step.title}
                 </h4>
-                <p className="text-xs text-[#50453b] font-light leading-relaxed">
+                <p className="text-xs text-[#475569] font-light leading-relaxed">
                   {step.desc}
                 </p>
-                <div className="pt-3 flex items-center gap-2 font-mono text-[10px] text-[#827569] font-medium border-t border-[#efeeeb] mt-1">
+                <div className="pt-3 flex items-center gap-2 font-mono text-[10px] text-[#64748b] font-medium border-t border-[#f1f5f9] mt-1">
                   {step.badge}
                 </div>
               </div>
@@ -142,16 +188,16 @@ export function ProductTransformShowcase({ onOpenBooking }: ProductTransformShow
         {/* Curated Systems Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <span className="font-mono text-[10px] text-[#827569] uppercase tracking-widest font-semibold">
+            <span className="font-mono text-[10px] text-[#64748b] uppercase tracking-widest font-semibold">
               Collections
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl text-[#1b1c1a] font-light mt-0.5">
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#0f172a] font-light mt-0.5">
               Curated Systems
             </h3>
           </div>
           <button
             onClick={onOpenBooking}
-            className="font-mono text-[11px] uppercase text-[#7c572d] hover:text-[#1b1c1a] tracking-wider flex items-center gap-1 font-semibold cursor-pointer"
+            className="font-mono text-[11px] uppercase text-[#3b71ad] hover:text-[#2d5b8f] tracking-wider flex items-center gap-1 font-semibold cursor-pointer"
           >
             <span>Full Catalog Specifications</span>
             <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -159,43 +205,43 @@ export function ProductTransformShowcase({ onOpenBooking }: ProductTransformShow
         </div>
 
         {/* 6 Curated Category Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div ref={productsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {CURATED_PRODUCTS.map((prod, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group border border-[#e4e2df]"
+              className="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group border border-[#e2e8f0]"
             >
               <div>
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#eae8e5]">
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#e2e8f0]">
                   <img
                     src={prod.image}
                     alt={prod.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md font-mono text-[10px] uppercase text-[#1b1c1a] font-semibold shadow-sm">
+                  <span className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md font-mono text-[10px] uppercase text-[#0f172a] font-semibold shadow-xs">
                     {prod.tag}
                   </span>
                 </div>
                 <div className="p-6">
-                  <span className="font-mono text-[10px] text-[#7c572d] uppercase tracking-wider font-bold">
+                  <span className="font-mono text-[10px] text-[#3b71ad] uppercase tracking-wider font-bold">
                     {prod.category}
                   </span>
-                  <h4 className="font-serif text-lg text-[#1b1c1a] font-medium mt-1">
+                  <h4 className="font-serif text-lg text-[#0f172a] font-medium mt-1">
                     {prod.title}
                   </h4>
-                  <p className="text-xs text-[#50453b] font-light leading-relaxed mt-2">
+                  <p className="text-xs text-[#475569] font-light leading-relaxed mt-2">
                     {prod.desc}
                   </p>
                 </div>
               </div>
 
-              <div className="px-6 pb-6 pt-3 flex items-center justify-between border-t border-[#efeeeb]">
-                <span className="font-mono text-[10px] text-[#827569] uppercase font-semibold">
+              <div className="px-6 pb-6 pt-3 flex items-center justify-between border-t border-[#f1f5f9]">
+                <span className="font-mono text-[10px] text-[#64748b] uppercase font-semibold">
                   {prod.spec}
                 </span>
                 <button
                   onClick={onOpenBooking}
-                  className="font-mono text-[11px] text-[#7c572d] hover:text-[#1b1c1a] uppercase tracking-wider flex items-center gap-1 group-hover:translate-x-1 transition-transform font-bold cursor-pointer"
+                  className="font-mono text-[11px] text-[#3b71ad] hover:text-[#2d5b8f] uppercase tracking-wider flex items-center gap-1 group-hover:translate-x-1 transition-transform font-bold cursor-pointer"
                 >
                   Explore Range →
                 </button>

@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useEffect, useRef, useCallback } from "react";
+import { animate } from "animejs";
 
 const TOTAL_FRAMES = 192;
 
 export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
 
   const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(TOTAL_FRAMES).fill(null));
 
@@ -22,7 +24,7 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
 
   const getFrameUrl = (index: number) => {
     const frameNum = String(index + 1).padStart(3, "0");
-    return `/roller_blinds_frames/frame_${frameNum}.jpg`;
+    return `/roller_blinds_frames/frame_${frameNum}.webp`;
   };
 
   const drawFrame = useCallback((frameIdx: number) => {
@@ -234,6 +236,18 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
     };
   }, [resizeCanvas]);
 
+  // Anime.js smooth editorial entrance
+  useEffect(() => {
+    if (heroContentRef.current) {
+      animate(heroContentRef.current, {
+        opacity: [0, 1],
+        translateY: [28, 0],
+        duration: 900,
+        ease: "outCubic",
+      });
+    }
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -253,22 +267,25 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1b1c1a]/80 via-[#1b1c1a]/20 to-black/35 pointer-events-none" />
 
         {/* Central Editorial Content */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 my-auto py-8">
+        <div
+          ref={heroContentRef}
+          className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 my-auto py-8 will-change-transform"
+        >
           <div className="max-w-3xl flex flex-col gap-5">
             <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-[#d4a574]" />
-              <p className="font-mono text-[11px] text-[#ffdcbc] uppercase tracking-[0.25em] font-semibold">
+              <span className="h-px w-10 bg-[#80a8d8]" />
+              <p className="font-mono text-[11px] text-[#cbe0f8] uppercase tracking-[0.25em] font-semibold">
                 Architectural Concealed Systems • Dusk Lowering
               </p>
             </div>
 
             <h1 className="font-serif text-[42px] md:text-[64px] lg:text-[78px] leading-[1.0] text-white tracking-[-0.02em] drop-shadow-md font-light">
               YOUR WINDOWS.<br />
-              <span className="italic font-serif font-light text-[#ffdcbc]">YOUR LIGHT.</span><br />
+              <span className="italic font-serif font-light text-[#80a8d8]">YOUR LIGHT.</span><br />
               YOUR SPACE.
             </h1>
 
-            <p className="text-base sm:text-lg text-[#f5f3f0] max-w-xl font-light leading-relaxed drop-shadow">
+            <p className="text-base sm:text-lg text-[#f1f5f9] max-w-xl font-light leading-relaxed drop-shadow">
               Transform your home with premium window furnishings designed for Queensland living. Crafted by master guild artisans with whisper-quiet smart motorisation.
             </p>
 
@@ -276,13 +293,13 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={onOpenBooking}
-                className="inline-flex items-center justify-center h-12 px-8 bg-[#d4a574] text-[#2c1700] font-mono text-[11px] uppercase font-bold rounded-full shadow-md hover:bg-[#7c572d] hover:text-white transition-all duration-300 tracking-widest hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center justify-center h-12 px-8 bg-gradient-to-r from-[#3b71ad] to-[#518ad0] text-white font-mono text-[11px] uppercase font-bold rounded-full shadow-lg shadow-[#3b71ad]/30 hover:from-[#2d5b8f] hover:to-[#3b71ad] transition-all duration-300 tracking-widest hover:scale-[1.02] cursor-pointer"
               >
                 Book Free Measure &amp; Quote
               </button>
               <a
-                href="#interactive-configurator"
-                className="inline-flex items-center justify-center h-12 px-7 bg-[#fbf9f6]/90 hover:bg-[#fbf9f6] text-[#1b1c1a] font-mono text-[11px] uppercase font-semibold rounded-full backdrop-blur-md shadow-sm transition-all duration-300 tracking-wider cursor-pointer"
+                href="#products"
+                className="inline-flex items-center justify-center h-12 px-7 bg-white/95 hover:bg-white text-[#0f172a] font-mono text-[11px] uppercase font-semibold rounded-full backdrop-blur-md shadow-sm transition-all duration-300 tracking-wider cursor-pointer"
               >
                 Explore Products
               </a>
@@ -293,7 +310,7 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
         {/* Bottom Minimal Scroll Indicator */}
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 pb-8 flex items-center justify-between">
           <div className="flex items-center gap-2 text-white/75 font-mono text-[10px] uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d4a574] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#e86b73] animate-pulse" />
             Scroll to Lower
           </div>
 
@@ -304,7 +321,7 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
             <span className="font-mono text-[11px] uppercase tracking-[0.2em]">
               Discover BWF
             </span>
-            <div className="w-7 h-7 rounded-full bg-[#fbf9f6]/80 group-hover:bg-white text-[#1b1c1a] flex items-center justify-center transition-all duration-300 group-hover:translate-y-1">
+            <div className="w-7 h-7 rounded-full bg-white/90 group-hover:bg-white text-[#0f172a] flex items-center justify-center transition-all duration-300 group-hover:translate-y-1">
               <span className="material-symbols-outlined text-[16px]">arrow_downward</span>
             </div>
           </a>
