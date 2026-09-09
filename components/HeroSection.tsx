@@ -252,7 +252,7 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative w-full h-[360vh] bg-[#1b1c1a]"
+      className="relative w-full h-[240vh] sm:h-[300vh] md:h-[360vh] bg-[#1b1c1a]"
     >
       {/* Sticky Cinematic Viewport */}
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-between pt-14 bg-[#1b1c1a]">
@@ -264,42 +264,42 @@ export function HeroSection({ onOpenBooking }: { onOpenBooking?: () => void }) {
         />
 
         {/* Minimal Soft Shadow for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1c1a]/80 via-[#1b1c1a]/20 to-black/35 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1c1a]/85 via-[#1b1c1a]/25 to-black/40 pointer-events-none" />
 
         {/* Central Editorial Content */}
         <div
           ref={heroContentRef}
-          className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 my-auto py-8 will-change-transform"
+          className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 my-auto py-6 sm:py-8 will-change-transform"
         >
-          <div className="max-w-3xl flex flex-col gap-5">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-[#80a8d8]" />
-              <p className="font-mono text-[11px] text-[#cbe0f8] uppercase tracking-[0.25em] font-semibold">
+          <div className="max-w-3xl flex flex-col gap-4 sm:gap-5">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <span className="h-px w-8 sm:w-10 bg-[#80a8d8]" />
+              <p className="font-mono text-[10px] sm:text-[11px] text-[#cbe0f8] uppercase tracking-[0.2em] sm:tracking-[0.25em] font-semibold">
                 Architectural Concealed Systems • Dusk Lowering
               </p>
             </div>
 
-            <h1 className="font-serif text-[42px] md:text-[64px] lg:text-[78px] leading-[1.0] text-white tracking-[-0.02em] drop-shadow-md font-light">
+            <h1 className="font-serif text-[34px] sm:text-[48px] md:text-[64px] lg:text-[78px] leading-[1.05] sm:leading-[1.0] text-white tracking-[-0.02em] drop-shadow-md font-light">
               YOUR WINDOWS.<br />
               <span className="italic font-serif font-light text-[#80a8d8]">YOUR LIGHT.</span><br />
               YOUR SPACE.
             </h1>
 
-            <p className="text-base sm:text-lg text-[#f1f5f9] max-w-xl font-light leading-relaxed drop-shadow">
+            <p className="text-sm sm:text-base md:text-lg text-[#f1f5f9] max-w-xl font-light leading-relaxed drop-shadow">
               Transform your home with premium window furnishings designed for Queensland living. Crafted by master guild artisans with whisper-quiet smart motorisation.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 pt-2">
               <button
                 onClick={onOpenBooking}
-                className="inline-flex items-center justify-center h-12 px-8 bg-gradient-to-r from-[#3b71ad] to-[#518ad0] text-white font-mono text-[11px] uppercase font-bold rounded-full shadow-lg shadow-[#3b71ad]/30 hover:from-[#2d5b8f] hover:to-[#3b71ad] transition-all duration-300 tracking-widest hover:scale-[1.02] cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center h-12 px-7 sm:px-8 bg-gradient-to-r from-[#3b71ad] to-[#518ad0] text-white font-mono text-[11px] uppercase font-bold rounded-full shadow-lg shadow-[#3b71ad]/30 hover:from-[#2d5b8f] hover:to-[#3b71ad] transition-all duration-300 tracking-widest hover:scale-[1.02] cursor-pointer"
               >
                 Book Free Measure &amp; Quote
               </button>
               <a
                 href="#products"
-                className="inline-flex items-center justify-center h-12 px-7 bg-white/95 hover:bg-white text-[#0f172a] font-mono text-[11px] uppercase font-semibold rounded-full backdrop-blur-md shadow-sm transition-all duration-300 tracking-wider cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center h-12 px-6 sm:px-7 bg-white/95 hover:bg-white text-[#0f172a] font-mono text-[11px] uppercase font-semibold rounded-full backdrop-blur-md shadow-sm transition-all duration-300 tracking-wider cursor-pointer"
               >
                 Explore Products
               </a>

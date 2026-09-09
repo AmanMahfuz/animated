@@ -25,14 +25,14 @@ export function Header({ onOpenBooking }: HeaderProps) {
         <div className="h-16 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-3 group cursor-pointer">
+          <a href="#" className="flex items-center gap-2 sm:gap-3 group cursor-pointer">
             <Image
               src="/Logo-forbwf-Prints.webp"
               alt="Brisbane Window Furnishings - way you see around"
               width={200}
               height={50}
               priority
-              className="h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-8 sm:h-10 md:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
           </a>
 
@@ -89,7 +89,7 @@ export function Header({ onOpenBooking }: HeaderProps) {
           </nav>
 
           {/* Right Action Button & Hotline */}
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-2 sm:gap-3.5">
             <a
               href="tel:1300737279"
               className="hidden lg:flex items-center gap-1.5 text-xs font-mono text-[#2d5b8f] font-bold px-3.5 py-1.5 rounded-full bg-[#ebf3fc] hover:bg-[#dce9f8] transition-colors border border-[#80a8d8]/25"
@@ -100,7 +100,7 @@ export function Header({ onOpenBooking }: HeaderProps) {
 
             <button
               onClick={onOpenBooking}
-              className="inline-flex items-center justify-center h-9 px-5 bg-gradient-to-r from-[#3b71ad] to-[#4c84c4] text-white text-[11px] font-mono font-bold uppercase rounded-full hover:from-[#2d5b8f] hover:to-[#3b71ad] transition-all duration-200 tracking-wider cursor-pointer shadow-sm shadow-[#3b71ad]/25"
+              className="inline-flex items-center justify-center h-8 sm:h-9 px-3.5 sm:px-5 bg-gradient-to-r from-[#3b71ad] to-[#4c84c4] text-white text-[10px] sm:text-[11px] font-mono font-bold uppercase rounded-full hover:from-[#2d5b8f] hover:to-[#3b71ad] transition-all duration-200 tracking-wider cursor-pointer shadow-sm shadow-[#3b71ad]/25"
             >
               Free Quote
             </button>
@@ -108,7 +108,7 @@ export function Header({ onOpenBooking }: HeaderProps) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-lg border border-[#cbd5e1] text-[#0f172a] hover:bg-[#f1f5f9]"
+              className="xl:hidden p-1.5 sm:p-2 rounded-lg border border-[#cbd5e1] text-[#0f172a] hover:bg-[#f1f5f9]"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -149,13 +149,6 @@ export function Header({ onOpenBooking }: HeaderProps) {
             >
               <span>Portfolio</span>
               <span className="text-xs font-mono text-[#64748b]">Recent Projects</span>
-            </button>
-            <button
-              onClick={() => scrollToSection("motorisation")}
-              className="text-left py-2 border-b border-[#e2e8f0] flex justify-between items-center"
-            >
-              <span>Motorisation</span>
-              <span className="text-xs font-mono text-[#64748b]">Smart Controls</span>
             </button>
             <button
               onClick={() => scrollToSection("process")}

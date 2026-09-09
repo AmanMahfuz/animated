@@ -22,7 +22,7 @@ export function BookingCTA() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#eef4fb]" id="consultation-booking">
+    <section className="w-full py-12 sm:py-16 md:py-24 bg-[#eef4fb]" id="consultation-booking">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
@@ -35,12 +35,12 @@ export function BookingCTA() {
               </span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#0f172a] font-light tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#0f172a] font-light tracking-tight">
               BOOK YOUR FREE MEASURE &amp; <br className="hidden sm:inline" />
               <span className="italic font-serif text-[#3b71ad]">QUOTE TODAY</span>
             </h2>
 
-            <p className="text-sm sm:text-base text-[#475569] font-light leading-relaxed">
+            <p className="text-xs sm:text-base text-[#475569] font-light leading-relaxed">
               Experience the convenience of our mobile showroom. We bring a full range of blinds, shutters, curtains, and motorisation samples directly to your doorstep for an accurate on-site consultation.
             </p>
 
@@ -91,7 +91,7 @@ export function BookingCTA() {
 
           {/* Right Column: Interactive Fast Booking Form (Col 6) */}
           <div className="lg:col-span-6">
-            <div className="bg-white rounded-3xl p-6 md:p-10 shadow-xl border border-[#e2e8f0] flex flex-col gap-6">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-xl border border-[#e2e8f0] flex flex-col gap-6">
               <div>
                 <span className="font-mono text-[10px] text-[#3b71ad] uppercase tracking-wider font-semibold">
                   Fast Online Request

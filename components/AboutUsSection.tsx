@@ -124,11 +124,11 @@ export function AboutUsSection({ onOpenBooking }: AboutUsSectionProps) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-16 md:py-24 bg-[#f8fafc]" id="about-us">
+    <section ref={sectionRef} className="w-full py-12 sm:py-16 md:py-24 bg-[#f8fafc]" id="about-us">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-12 gap-6">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-6 h-px bg-[#3b71ad]" />
@@ -136,25 +136,25 @@ export function AboutUsSection({ onOpenBooking }: AboutUsSectionProps) {
                 Brisbane &amp; Sunshine Coast Specialists
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#0f172a] font-light tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#0f172a] font-light tracking-tight">
               REFRESH YOUR SPACE WITH <br className="hidden sm:inline" />
               <span className="italic font-serif text-[#3b71ad]">BESPOKE WINDOW SOLUTIONS</span>
             </h2>
-            <p className="text-sm sm:text-base text-[#475569] mt-3 font-light leading-relaxed">
+            <p className="text-xs sm:text-base text-[#475569] mt-3 font-light leading-relaxed">
               Looking for high-quality window furnishings that local homeowners and businesses trust? We specialise in delivering custom window furnishings — combining style, functionality, and durability designed specifically for the unique demands of the Queensland climate.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 self-start lg:self-end">
-            <div className="px-4 py-2 rounded-full bg-[#f1f5f9] border border-[#e2e8f0] flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 self-start lg:self-end">
+            <div className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#f1f5f9] border border-[#e2e8f0] flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#10b981]" />
-              <span className="font-mono text-[11px] text-[#0f172a] uppercase font-semibold">
+              <span className="font-mono text-[10px] sm:text-[11px] text-[#0f172a] uppercase font-semibold">
                 Designed for Queensland Living
               </span>
             </div>
-            <div className="px-4 py-2 rounded-full bg-[#ebf3fc] border border-[#80a8d8]/30 flex items-center gap-2">
+            <div className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#ebf3fc] border border-[#80a8d8]/30 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#3b71ad]" />
-              <span className="font-mono text-[11px] text-[#1e3a63] uppercase font-semibold">
+              <span className="font-mono text-[10px] sm:text-[11px] text-[#1e3a63] uppercase font-semibold">
                 Mobile Showroom Service
               </span>
             </div>
@@ -162,22 +162,22 @@ export function AboutUsSection({ onOpenBooking }: AboutUsSectionProps) {
         </div>
 
         {/* Live Animated Numbers Banner */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 p-6 sm:p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs">
-          <div className="flex flex-col items-center sm:items-start border-r border-[#f1f5f9] last:border-none pr-4">
-            <span ref={stat1Ref} className="font-serif text-3xl sm:text-4xl text-[#3b71ad] font-bold">10+</span>
-            <span className="font-mono text-[10px] text-[#64748b] uppercase tracking-wider mt-1">Years QLD Experience</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border border-[#e2e8f0] shadow-xs">
+          <div className="flex flex-col items-center sm:items-start border-r border-[#f1f5f9] pr-2 sm:pr-4 text-center sm:text-left">
+            <span ref={stat1Ref} className="font-serif text-2xl sm:text-4xl text-[#3b71ad] font-bold">10+</span>
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#64748b] uppercase tracking-wider mt-1">Years QLD Experience</span>
           </div>
-          <div className="flex flex-col items-center sm:items-start border-r border-[#f1f5f9] last:border-none pr-4">
-            <span ref={stat2Ref} className="font-serif text-3xl sm:text-4xl text-[#e86b73] font-bold">69+</span>
-            <span className="font-mono text-[10px] text-[#64748b] uppercase tracking-wider mt-1">5-Star Google Reviews</span>
+          <div className="flex flex-col items-center sm:items-start md:border-r border-[#f1f5f9] pr-2 sm:pr-4 text-center sm:text-left">
+            <span ref={stat2Ref} className="font-serif text-2xl sm:text-4xl text-[#e86b73] font-bold">69+</span>
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#64748b] uppercase tracking-wider mt-1">5-Star Google Reviews</span>
           </div>
-          <div className="flex flex-col items-center sm:items-start border-r border-[#f1f5f9] last:border-none pr-4">
-            <span ref={stat3Ref} className="font-serif text-3xl sm:text-4xl text-[#3b71ad] font-bold">100%</span>
-            <span className="font-mono text-[10px] text-[#64748b] uppercase tracking-wider mt-1">Perfect Fit Guarantee</span>
+          <div className="flex flex-col items-center sm:items-start border-r border-[#f1f5f9] pr-2 sm:pr-4 text-center sm:text-left">
+            <span ref={stat3Ref} className="font-serif text-2xl sm:text-4xl text-[#3b71ad] font-bold">100%</span>
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#64748b] uppercase tracking-wider mt-1">Perfect Fit Guarantee</span>
           </div>
-          <div className="flex flex-col items-center sm:items-start">
-            <span ref={stat4Ref} className="font-serif text-3xl sm:text-4xl text-[#0f172a] font-bold">280+</span>
-            <span className="font-mono text-[10px] text-[#64748b] uppercase tracking-wider mt-1">Curated Fabric Weaves</span>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span ref={stat4Ref} className="font-serif text-2xl sm:text-4xl text-[#0f172a] font-bold">280+</span>
+            <span className="font-mono text-[9px] sm:text-[10px] text-[#64748b] uppercase tracking-wider mt-1">Curated Fabric Weaves</span>
           </div>
         </div>
 

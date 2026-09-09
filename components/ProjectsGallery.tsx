@@ -146,7 +146,7 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {[
               { id: "all", name: "All Projects" },
               { id: "curtains", name: "Curtains" },
@@ -157,7 +157,7 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full font-mono text-[11px] uppercase font-semibold transition-all duration-200 cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-mono text-[10px] sm:text-[11px] uppercase font-semibold transition-all duration-200 cursor-pointer ${
                   activeCategory === cat.id
                     ? "bg-[#3b71ad] text-white shadow-xs shadow-[#3b71ad]/30"
                     : "bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#0f172a] border border-[#e2e8f0]"
@@ -181,7 +181,7 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
                   isCol7 ? "md:col-span-7" : "md:col-span-5"
                 }`}
               >
-                <div className="aspect-[16/11] md:aspect-auto md:h-[500px] w-full overflow-hidden">
+                <div className="aspect-[4/3] sm:aspect-[16/11] md:aspect-auto md:h-[500px] w-full overflow-hidden">
                   <img
                     src={proj.image}
                     alt={proj.alt}
@@ -189,18 +189,18 @@ export function ProjectsGallery({ onOpenBooking }: ProjectsGalleryProps) {
                   />
                 </div>
 
-                {/* Reveal Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/40 to-transparent p-6 sm:p-8 flex flex-col justify-end text-white transition-opacity duration-300">
-                  <span className="font-mono text-[10px] text-[#cbe0f8] uppercase tracking-widest font-semibold">
+                {/* Reveal Overlay on Hover / Mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/95 via-[#0f172a]/45 to-transparent p-5 sm:p-8 flex flex-col justify-end text-white transition-opacity duration-300">
+                  <span className="font-mono text-[9px] sm:text-[10px] text-[#cbe0f8] uppercase tracking-widest font-semibold">
                     {proj.commission}
                   </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-white mt-1 font-light">
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white mt-1 font-light leading-snug">
                     {proj.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-lg mt-2 font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-lg mt-1.5 sm:mt-2 font-light leading-relaxed">
                     {proj.desc}
                   </p>
-                  <div className="pt-4 flex flex-wrap items-center gap-3 text-[10px] font-mono text-[#80a8d8] border-t border-white/15 mt-3">
+                  <div className="pt-3 sm:pt-4 flex flex-wrap items-center gap-2 sm:gap-3 text-[9px] sm:text-[10px] font-mono text-[#80a8d8] border-t border-white/15 mt-2 sm:mt-3">
                     {proj.specs}
                   </div>
                 </div>

@@ -186,7 +186,7 @@ export function ProductTransformShowcase({ onOpenBooking }: ProductTransformShow
         </div>
 
         {/* Curated Systems Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-8">
           <div>
             <span className="font-mono text-[10px] text-[#64748b] uppercase tracking-widest font-semibold">
               Collections
@@ -197,7 +197,7 @@ export function ProductTransformShowcase({ onOpenBooking }: ProductTransformShow
           </div>
           <button
             onClick={onOpenBooking}
-            className="font-mono text-[11px] uppercase text-[#3b71ad] hover:text-[#2d5b8f] tracking-wider flex items-center gap-1 font-semibold cursor-pointer"
+            className="self-start sm:self-auto font-mono text-[10px] sm:text-[11px] uppercase text-[#3b71ad] hover:text-[#2d5b8f] tracking-wider flex items-center gap-1 font-semibold cursor-pointer"
           >
             <span>Full Catalog Specifications</span>
             <span className="material-symbols-outlined text-[16px]">arrow_forward</span>

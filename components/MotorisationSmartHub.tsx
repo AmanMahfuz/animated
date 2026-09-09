@@ -86,8 +86,12 @@ export function MotorisationSmartHub({ onOpenBooking }: MotorisationSmartHubProp
     stateRef.current.lastDrawnFrame = frameIdx;
   }, []);
 
-  // Lazy Preloader for roller blind frames
+  // Lazy Preloader for roller blind frames (desktop/tablet only)
   useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return;
+    }
+
     let isCancelled = false;
 
     const loadInitial = async () => {
@@ -255,7 +259,7 @@ export function MotorisationSmartHub({ onOpenBooking }: MotorisationSmartHubProp
   };
 
   return (
-    <section ref={sectionRef} className="w-full py-16 md:py-24 bg-[#eef4fb] text-[#0f172a]" id="motorisation">
+    <section ref={sectionRef} className="hidden md:block w-full py-16 md:py-24 bg-[#eef4fb] text-[#0f172a]" id="motorisation">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
